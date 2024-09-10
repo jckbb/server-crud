@@ -53,10 +53,10 @@ router.patch("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const user = req.body;
+  const userRecord = { ...user, id: uuidv4() };
+  users.push(userRecord);
 
-  users.push({ ...user, id: uuidv4() });
-
-  res.send(`${user.first_name} has been added to the Database`);
+  res.status(201).json(userRecord);
 });
 
 export default router;
